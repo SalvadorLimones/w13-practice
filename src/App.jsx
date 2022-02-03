@@ -11,23 +11,16 @@ const Post = ({ post, editPost, deletePost }) => {
         className="title-edit"
         onChange={(e) => setNewTitle(e.target.value)}
         value={newTitle}
-        type="text"
-        placeholder="new post title"
       />
       <textarea
         className="text-edit"
         onChange={(e) => setNewText(e.target.value)}
         value={newText}
-        placeholder="new post t"
       />
 
       <p>{post.date.toLocaleString()}</p>
 
-      <button
-        onClick={() =>
-          editPost(post.id, newTitle, newText, isEditing, setEditing)
-        }
-      >
+      <button onClick={() => editPost(post.id, newTitle, newText, setEditing)}>
         submit change
       </button>
     </div>
@@ -64,7 +57,7 @@ function App() {
   const deletePost = (deleteThis) =>
     setPosts(posts.filter((post) => post.id !== deleteThis));
 
-  const editPost = (id, newTitle, newText, isEditing, setEditing) => {
+  const editPost = (id, newTitle, newText, setEditing) => {
     const newList = [];
     for (let post of posts) {
       if (post.id === id) {
@@ -80,16 +73,16 @@ function App() {
   return (
     <div className="App">
       <h1>Blog Posts</h1>
-      <div>
+      <div className="input-container">
         <input
           onChange={(e) => setTitle(e.target.value)}
-          type="text"
+          className="title-edit"
           placeholder="title"
           value={title}
         />
-        <input
+        <textarea
           onChange={(e) => setPostText(e.target.value)}
-          type="textarea"
+          className="text-edit"
           placeholder="post"
           value={postText}
         />
